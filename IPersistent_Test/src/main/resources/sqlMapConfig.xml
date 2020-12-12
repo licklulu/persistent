@@ -1,0 +1,10 @@
+<configuration>
+    <!--数据库连接信息 -->
+    <property name="dataSource" value="com.alibaba.druid.pool.DruidDataSource"/>
+    <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+    <property name="jdbcUrl" value="jdbc:mysql:///lick1"/>
+    <property name="user" value="root"/>
+    <property name="password" value="root"/>
+    <!--sql信息 -->
+    <mapper resource="UserMapper.xml"/>
+</configuration>
