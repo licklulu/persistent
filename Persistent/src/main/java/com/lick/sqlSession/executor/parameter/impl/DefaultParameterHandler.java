@@ -63,17 +63,13 @@ public class DefaultParameterHandler implements ParameterHandler {
                     statement.setObject(1, params[0]);
                 }else {
                     for (int i = 0; i < parameterMappings.size(); i++) {
-                        try {
-                            Field field = parameterClass.getDeclaredField(parameterMappings.get(i).getContent());
-                            field.setAccessible(true);
-                            Object o = field.get(params[0]);
-                            statement.setObject(i + 1, o);
-                        }catch (NoSuchFieldException e){
-                            statement.setObject(i + 1, params[0]);
-                        }
+                        Field field = parameterClass.getDeclaredField(parameterMappings.get(i).getContent());
+                        field.setAccessible(true);
+                        Object o = field.get(params[0]);
+                        statement.setObject(i + 1, o);
                     }
                 }
-            } catch (ClassNotFoundException | IllegalAccessException e) {
+            } catch (ClassNotFoundException | IllegalAccessException | NoSuchFieldException e) {
                 throw new PersistenceException("Set params failed, mappedStatement: " + mappedStatement, e);
             }
         }
